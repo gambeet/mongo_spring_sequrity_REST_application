@@ -24,13 +24,13 @@ import java.util.Random;
  */
 
 @Controller
-@RequestMapping("random")
+@RequestMapping("/random")
 public class RandomFieldsController {
 
     @Autowired
     MongoTemplate template;
 
-    @RequestMapping("/")
+    @RequestMapping()
     public String getRandomForm(Model model){
 
         int r = Math.abs(new Random().nextInt())%10 + 1;
