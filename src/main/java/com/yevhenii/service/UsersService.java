@@ -24,4 +24,8 @@ public class UsersService {
     public List getAllUsers(){
         return userRepository.findAll();
     }
+
+    public JSONObject createUser(String username, String password, List roles) {
+        return new JSONObject(userRepository.createUser(username, password, roles).toMap());
+    }
 }
