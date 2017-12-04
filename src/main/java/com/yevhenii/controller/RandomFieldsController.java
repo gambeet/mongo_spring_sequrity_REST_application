@@ -24,6 +24,7 @@ import java.util.Random;
  */
 
 @Controller
+@RequestMapping("random")
 public class RandomFieldsController {
 
     @Autowired
@@ -48,6 +49,7 @@ public class RandomFieldsController {
         template.getCollection("test").insert(object, WriteConcern.MAJORITY);
         return "redirect:/";
     }
+
     @RequestMapping("/get")
     public String get(Model model){
         System.out.println(template.getCollection("test").count());
