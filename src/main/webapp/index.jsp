@@ -6,7 +6,7 @@
     <%@ page isELIgnored="false" %>
 </head>
 <body>
-<form method="post" action="/add">
+<form method="post" action="/random/add">
     <c:forEach begin="1" end="${random}" varStatus="loop">
         <p><input type="text" name="${loop.index}"></p>
     </c:forEach>

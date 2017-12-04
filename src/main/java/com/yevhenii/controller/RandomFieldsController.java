@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Created by Yevhenii on 29.11.2017.
@@ -29,6 +31,8 @@ public class RandomFieldsController {
 
     @Autowired
     MongoTemplate template;
+
+    ExecutorService threadPool = Executors.newCachedThreadPool();
 
     @RequestMapping()
     public String getRandomForm(Model model){
@@ -44,10 +48,17 @@ public class RandomFieldsController {
         System.out.println(form.size());
         DBObject object = new BasicDBObject();
         form.keySet().forEach(key -> {
-            object.put(key, form.get(key));
+            threadPool.submit(new Runnable() {
+                @Override
+                public void run() {
+                    synchronized (object){
+                        object.put(key, form.get(key));
+                    }
+                }
+            });
         });
         template.getCollection("test").insert(object, WriteConcern.MAJORITY);
-        return "redirect:/";
+        return "redirect:/ramdom";
     }
 
     @RequestMapping("/get")
