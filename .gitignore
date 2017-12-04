@@ -27,3 +27,4 @@ demomongo.iml
 mvnw
 mvnw.cmd
 target/
+logs/
