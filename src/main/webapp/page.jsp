@@ -6,7 +6,7 @@
     <title>Title</title>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.js"></script>
     <script>
-        $(document).ready(window.setInterval(getUsers, 5000));
+        $(document).ready(window.setInterval(getUsers, <c:out value="${time}"/>));
         function getUsers() {
 
             $.ajax({
