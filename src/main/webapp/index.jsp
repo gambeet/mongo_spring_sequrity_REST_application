@@ -8,7 +8,7 @@
 <body>
 <form method="post" action="/random/add">
     <c:forEach begin="1" end="${random}" varStatus="loop">
-        <p><input type="text" name="${loop.index}"></p>
+        <p><input type="text" name="${loop.index}" value="${loop.index}"></p>
     </c:forEach>
     <input type="submit" value="Submit">
 </form>
