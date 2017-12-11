@@ -19,24 +19,21 @@
     <button type="submit" class="a_submit">Submit</button>
     <div class="wrapper"></div>
     <script>
-        $('.a_submit').on('click', function (form) {
-            form.preventDefault();
-            var arr = $("form input"), obj = {};
-            $.each(arr, function(indx, el){
-                obj[el.name] ? obj[el.name].push(el.value) : (obj[el.name] = el.value);
-            });
+        $('.a_submit').on('click', function () {
+            var formData = new FormData(document.getElementById("loginForm"));
             var xhr = new XMLHttpRequest();
-            var split;
+            var token;
             xhr.open('POST', '/login', false);
-            xhr.send(JSON.stringify(obj));
+            xhr.send(formData);
 
             if (xhr.status != 200) {
                 alert( xhr.status + ': ' + xhr.statusText );
+                return;
             } else {
-                split = xhr.getResponseHeader("Authorization").split(" ")[1];
+                token = xhr.getResponseHeader("Authorization");
             }
-            sessionStorage['token'] = split;
-            redirectPost('/page', {'token': split});
+            sessionStorage['token'] = token;
+            redirectPost('/page', {'token': token});
         });
         function redirectPost(url, data) {
             var form = document.createElement('form');

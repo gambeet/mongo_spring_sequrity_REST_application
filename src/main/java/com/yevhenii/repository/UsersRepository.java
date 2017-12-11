@@ -14,7 +14,6 @@ public class UsersRepository {
     @Autowired
     MongoTemplate template;
 
-
     public DBObject findUserByUsername(String username) {
         return template.getCollection("users").findOne(new BasicDBObject("name", username));
     }

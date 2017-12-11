@@ -1,5 +1,6 @@
 package com.yevhenii;
 
+import com.yevhenii.configuration.filters.JWTLoginFilter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -39,5 +40,7 @@ public class DemomongoApplication extends SpringBootServletInitializer {
 		return mongoTemplate;
 
 	}
+
+
 
 }
